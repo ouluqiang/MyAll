@@ -78,7 +78,6 @@ public class BookProvider {
      */
     public final static String FORM_DATA = "multipart/form-data";
 
-//    public static Context context = .context;
 
     public static List<BookBean> scanMusicFile(Context context) {
         List<BookBean> books = new ArrayList<>();
