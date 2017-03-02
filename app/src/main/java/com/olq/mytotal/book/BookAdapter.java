@@ -24,6 +24,17 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.Holder> {
     private Context mContext;
     private List<BookBean> list;
 
+    private OnItemClickListener onItemClickListener;
+    private OnItemLongClickListener onItemLongClickListener;
+
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
+        this.onItemLongClickListener = onItemLongClickListener;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
     public BookAdapter(Context mContext, List<BookBean> list) {
         this.mContext = mContext;
         this.list = list;
@@ -36,9 +47,22 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.Holder> {
     }
 
     @Override
-    public void onBindViewHolder(Holder holder, int position) {
+    public void onBindViewHolder(Holder holder, final int position) {
         holder.tvTitle.setText(list.get(position).getTitle());
         holder.tvSize.setText(list.get(position).getSize());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onItemClickListener.onItemClick(view,position);
+            }
+        });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                onItemClickListener.onItemClick(view,position);
+                return true;
+            }
+        });
     }
 
     @Override
@@ -58,5 +82,13 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.Holder> {
             ButterKnife.bind(this,itemView);
         }
     }
+
+    public interface OnItemClickListener{
+       void onItemClick(View view,int position);
+    }
+    public interface OnItemLongClickListener{
+       void onItemLongClick(View view,int position);
+    }
+
 
 }

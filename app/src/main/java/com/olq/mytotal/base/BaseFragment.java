@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.myolq.frame.utils.ToastUtil;
+
 import butterknife.ButterKnife;
 
 /**
@@ -31,7 +33,9 @@ public abstract class BaseFragment extends Fragment {
         return view;
     }
 
-
+    public void Toast(String message){
+        ToastUtil.show(getActivity(),message);
+    }
 
 
 }

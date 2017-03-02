@@ -86,8 +86,8 @@ public class BookProvider {
                 new String[] { MediaStore.MediaColumns._ID,
                         MediaStore.MediaColumns.MIME_TYPE,
                         MediaStore.MediaColumns.SIZE,
-                        MediaStore.MediaColumns.DATA }, MediaStore.MediaColumns.DATA+" like ?",
-                new String[] { "%.txt" }
+                        MediaStore.MediaColumns.DATA }, MediaStore.MediaColumns.DATA+" like ? and "+ MediaStore.MediaColumns.SIZE+" >?",
+                new String[] { "%.txt"," 1024" }
                 , MediaStore.Images.Media.SIZE+" DESC");
 
 
@@ -102,7 +102,7 @@ public class BookProvider {
 
             String data = cursor.getString(cursor
                     .getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA));
-            String title=data.substring(data.lastIndexOf("/"),data.lastIndexOf("."));
+            String title=data.substring(data.lastIndexOf("/")+1,data.lastIndexOf("."));
 
                 Log.e("Name,Type,data", id+","+size + " ," + type + ", " + data+"---"+title);
             BookBean bookBean = new BookBean(data, FileUtil.formatFileSizeToString(size),title);

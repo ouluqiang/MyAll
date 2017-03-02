@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".LaunchActivity" />
+        <activity android:name=".ReadActivity"></activity>
     </application>
 
 </manifest>
