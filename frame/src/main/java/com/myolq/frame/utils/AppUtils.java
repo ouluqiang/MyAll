@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
@@ -24,6 +26,20 @@ public class AppUtils {
 		/* cannot be instantiated */
         throw new UnsupportedOperationException("cannot be instantiated");
 
+    }
+
+    private static Context mContext;
+    private static Thread mUiThread;
+
+    private static Handler sHandler = new Handler(Looper.getMainLooper());
+
+    public static void init(Context context) {
+        mContext = context;
+        mUiThread = Thread.currentThread();
+    }
+
+    public static Context getAppContext() {
+        return mContext;
     }
 
     /**

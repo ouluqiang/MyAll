@@ -6,13 +6,11 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import com.myolq.frame.utils.FileUtil;
+import com.myolq.frame.utils.FileUtils;
 import com.olq.mytotal.bean.BookBean;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.R.attr.name;
 
 /**
  * Created by Administrator on 2017/3/1.
@@ -105,7 +103,7 @@ public class BookProvider {
             String title=data.substring(data.lastIndexOf("/")+1,data.lastIndexOf("."));
 
                 Log.e("Name,Type,data", id+","+size + " ," + type + ", " + data+"---"+title);
-            BookBean bookBean = new BookBean(data, FileUtil.formatFileSizeToString(size),title);
+            BookBean bookBean = new BookBean(data, FileUtils.formatFileSizeToString(size),title);
             books.add(bookBean);
 
         }

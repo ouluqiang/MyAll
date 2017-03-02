@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
@@ -142,6 +143,22 @@ public class ScreenUtils {
         ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) v.getLayoutParams();
         params.width = W;
         v.setLayoutParams(params);
+    }
+
+    /**
+     * 获得当前屏幕亮度值
+     *
+     * @param mContext
+     * @return 0~100
+     */
+    public static float getScreenBrightness(Context mContext) {
+        int screenBrightness = 255;
+        try {
+            screenBrightness = Settings.System.getInt(mContext.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return screenBrightness / 255.0F * 100;
     }
 
 }
