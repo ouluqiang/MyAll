@@ -83,9 +83,7 @@ public class BookProvider {
         List<BookBean> books = new ArrayList<>();
         Cursor cursor = context.getContentResolver().query(
                 Uri.parse("content://media/external/file"),
-//                MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                 new String[] { MediaStore.MediaColumns._ID,
-//                        MediaStore.MediaColumns.DISPLAY_NAME,
                         MediaStore.MediaColumns.MIME_TYPE,
                         MediaStore.MediaColumns.SIZE,
                         MediaStore.MediaColumns.DATA }, MediaStore.MediaColumns.DATA+" like ?",
