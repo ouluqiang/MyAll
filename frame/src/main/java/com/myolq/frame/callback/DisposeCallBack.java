@@ -2,12 +2,11 @@ package com.myolq.frame.callback;
 
 import android.graphics.Bitmap;
 
+import com.lzy.okgo.model.Response;
 import com.myolq.frame.utils.GsonUtils;
 
 import java.io.File;
 
-import okhttp3.Call;
-import okhttp3.Response;
 
 /**
  * Created by Administrator on 2017/1/23.
@@ -15,32 +14,32 @@ import okhttp3.Response;
 
 public class DisposeCallBack {
 
-    public <T> void onSuccess(HttpCallBack<T> callback, String result, Call call, Response response){
+    public <T> void onSuccess(HttpCallBack<T> callback, Response response){
         if (callback!=null){
             if (callback instanceof GsonCallBack){
                 GsonCallBack gsonCallBack=((GsonCallBack) callback);
-                gsonCallBack.onSuccess(GsonUtils.getBeanFromJson(result,gsonCallBack.getType()),call,response);
+                gsonCallBack.onSuccess(GsonUtils.getBeanFromJson(String.valueOf(response.body()),gsonCallBack.getType()));
             }else if(callback instanceof StringCallBack){
-                    ((StringCallBack) callback).onSuccess(result,call,response);
+                    ((StringCallBack) callback).onSuccess(response.body()+"");
             }
         }
     }
-    public <T> void onSuccess(HttpCallBack<T> callback, Bitmap result, Call call, Response response){
+    public <T> void onSuccess(HttpCallBack<T> callback, Bitmap result,  Response response){
         if (callback!=null){
             if (callback instanceof BitmapCallBack){
-                ((BitmapCallBack) callback).onSuccess(result,call,response);
+                ((BitmapCallBack) callback).onSuccess(result);
             }
         }
     }
-    public <T> void onSuccess(HttpCallBack<T> callback, File result, Call call, Response response){
+    public <T> void onSuccess(HttpCallBack<T> callback, File result, Response response){
         if (callback!=null){
             if (callback instanceof FileCallBack){
-                ((FileCallBack) callback).onSuccess(result,call,response);
+                ((FileCallBack) callback).onSuccess(result);
             }
         }
     }
 
-    public <T> void onError(HttpCallBack<T> callback, Call call, Response response, Exception e){
+    public <T> void onError(HttpCallBack<T> callback,  Response response, Exception e){
         if(callback!=null)
         {
 //            ErrorBean baseBean= null;
@@ -49,7 +48,7 @@ public class DisposeCallBack {
 //            } catch (IOException e1) {
 //                e1.printStackTrace();
 //            }
-            callback.onError(call,response,e);
+            callback.onError(response,e);
         }
 
     }

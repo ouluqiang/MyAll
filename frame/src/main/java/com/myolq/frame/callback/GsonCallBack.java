@@ -1,10 +1,10 @@
 package com.myolq.frame.callback;
 
 
+import com.lzy.okgo.model.Response;
+
 import java.lang.reflect.Type;
 
-import okhttp3.Call;
-import okhttp3.Response;
 
 /**
  * Created by Administrator on 2016/10/20 0020.
@@ -23,9 +23,9 @@ public abstract class GsonCallBack<T> extends HttpCallBack<T>{
         this.type=type;
     }
 
-    public abstract void onSuccess(T t, Call call, Response response);
+    public abstract void onSuccess(T t);
 
-    public abstract void onError(Call call, Response response, Exception e);
+    public abstract void onError(Response response, Exception e);
 
 
 }

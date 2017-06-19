@@ -1,9 +1,9 @@
 package com.myolq.frame.callback;
 
+import com.lzy.okgo.model.Response;
 import com.myolq.frame.ErrorBean;
 
 import okhttp3.Call;
-import okhttp3.Response;
 
 /**
  * Created by Administrator on 2017/1/23.
@@ -11,8 +11,8 @@ import okhttp3.Response;
 
 public abstract class HttpCallBack<T> extends BaseCallBack{
 
-    public abstract void onSuccess(T t, Call call, Response response);
+    public abstract void onSuccess(T t);
 
-    public abstract void onError(Call call, Response response, Exception e);
+    public abstract void onError(Response response, Exception e);
 
 }
