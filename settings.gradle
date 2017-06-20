@@ -1,1 +1,1 @@
-include ':app', ':mvp', ':frame'
+include ':mvp', ':frame', ':user', ':movie'

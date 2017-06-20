@@ -1,11 +1,18 @@
-apply plugin: 'com.android.application'
+if(rootProject.ext.isBuild){
+    apply plugin: 'com.android.application'
+}else{
+    apply plugin: 'com.android.library'
+}
+
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.myolq.mvp"
+        if(rootProject.ext.isBuild){
+            applicationId "com.myolq.movie"
+        }
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode rootProject.ext.android.versionCode
@@ -13,6 +20,7 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -20,6 +28,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets{
+        main{
+            if(rootProject.ext.isBuild){
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            }else{
+                manifest.srcFile 'src/main/release/AndroidManifest.xml'
+            }
+        }
+    }
+
+    resourcePrefix 'movie_'
+
 }
 
 dependencies {
@@ -29,14 +50,8 @@ dependencies {
 //    })
 //    compile 'com.android.support:appcompat-v7:25.3.1'
 //    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0'
+
+    compile 'com.android.support:support-vector-drawable:25.3.1'
+    compile project(':frame')
 //    testCompile 'junit:junit:4.12'
-    if(!rootProject.ext.isBuild){
-        compile project(':movie')
-        compile project(':user')
-
-    }else{
-        compile project(':frame')
-    }
-
 }
