@@ -1,17 +1,16 @@
-package com.myolq.mvp;
+package com.myolq.frame;
 
 import android.app.Application;
 
 import com.github.mzule.activityrouter.annotation.Modules;
-import com.myolq.frame.FrameApplication;
+import com.github.mzule.activityrouter.annotation.Router;
 import com.myolq.frame.loader.OkgoLoader;
 
 /**
- * Created by Administrator on 2017/6/19.
+ * Created by Administrator on 2017/6/21.
  */
 
-@Modules({"app","movie","user"})
-public class BaseApplication extends FrameApplication{
+public class FrameApplication extends Application{
 
     @Override
     public void onCreate() {

@@ -9,7 +9,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/frame" />
-            <option value="$PROJECT_DIR$/movie" />
             <option value="$PROJECT_DIR$/mvp" />
             <option value="$PROJECT_DIR$/user" />
           </set>
